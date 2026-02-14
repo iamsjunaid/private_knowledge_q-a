@@ -11,7 +11,7 @@ router.get('/status', async (_req, res) => {
   const llmStatus = await checkLLMHealth();
 
   res.json({
-    server: 'ok',
+    server: 'ok✅',
     database: dbStatus,
     llm: llmStatus,
   });

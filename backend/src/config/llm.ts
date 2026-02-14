@@ -20,8 +20,8 @@ export async function checkLLMHealth(): Promise<string> {
   try {
     const result = await chatModel.generateContent("Say OK");
     const text = result.response.text();
-    return text ? "reachable" : "unreachable";
-  } catch {
-    return "unreachable";
+    return text ? "reachable✅" : "unreachable❌";
+  } catch (error) {
+    return "unreachable❌";
   }
 }
