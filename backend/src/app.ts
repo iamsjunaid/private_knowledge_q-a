@@ -7,7 +7,7 @@ const app = express();
 
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'https://private-knowledge-q-a-frontend.onrender.com/'],
+    origin: ['http://localhost:5173', 'https://private-knowledge-q-a-frontend.onrender.com'],
   }),
 );
 app.use(express.json());
