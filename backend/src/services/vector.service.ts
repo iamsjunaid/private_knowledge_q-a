@@ -1,10 +1,14 @@
 import { pool } from '../config/db';
 
 function cosineSimilarity(a: number[], b: number[]) {
+  if (!a || !b || a.length !== b.length) return 0;
+
   const dot = a.reduce((sum, val, i) => sum + val * b[i], 0);
 
   const magnitudeA = Math.sqrt(a.reduce((sum, val) => sum + val * val, 0));
   const magnitudeB = Math.sqrt(b.reduce((sum, val) => sum + val * val, 0));
+
+  if (magnitudeA === 0 || magnitudeB === 0) return 0;
 
   return dot / (magnitudeA * magnitudeB);
 }
@@ -23,8 +27,14 @@ export async function storeChunk(
 
 export async function getAllChunks() {
   const result = await pool.query(
-    `SELECT id, document_id, content, embedding
-     FROM document_chunks`,
+    `SELECT 
+        dc.id,
+        dc.document_id,
+        dc.content,
+        dc.embedding,
+        d.title
+     FROM document_chunks dc
+     JOIN documents d ON d.id = dc.document_id`,
   );
 
   return result.rows;

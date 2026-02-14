@@ -6,9 +6,10 @@ export function errorMiddleware(
   res: Response,
   _next: NextFunction,
 ) {
-  console.error(err);
+  console.error('Error:', err);
 
   res.status(err.status || 500).json({
+    success: false,
     message: err.message || 'Internal Server Error',
   });
 }
