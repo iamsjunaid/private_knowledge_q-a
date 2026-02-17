@@ -2,7 +2,11 @@ import { useState } from "react";
 import { AxiosError } from "axios";
 import { api } from "../api/api";
 
-export default function DocumentUpload() {
+interface Props {
+  onUploadSuccess: () => void;
+}
+
+export default function DocumentUpload({ onUploadSuccess }: Props) {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [loading, setLoading] = useState(false);
@@ -14,6 +18,7 @@ export default function DocumentUpload() {
 
     try {
       await api.post("/documents", { title, content });
+      onUploadSuccess();
       alert("Uploaded successfully!");
       setTitle("");
       setContent("");

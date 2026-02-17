@@ -1,17 +1,21 @@
-import { useEffect, useState } from "react";
-import { api } from "../api/api";
+// import { useEffect, useState } from "react";
+// import { api } from "../api/api";
 import type { Document } from "../types";
 
-export default function DocumentList() {
-  const [documents, setDocuments] = useState<Document[]>([]);
+interface Props {
+  documents: Document[];
+}
 
-  useEffect(() => {
-    const fetchDocs = async () => {
-      const res = await api.get("/documents");
-      setDocuments(res.data);
-    };
-    fetchDocs();
-  }, []);
+export default function DocumentList({ documents }: Props) {
+  // const [documents, setDocuments] = useState<Document[]>([]);
+
+  // useEffect(() => {
+  //   const fetchDocs = async () => {
+  //     const res = await api.get("/documents");
+  //     setDocuments(res.data);
+  //   };
+  //   fetchDocs();
+  // }, []);
 
 
   return (
